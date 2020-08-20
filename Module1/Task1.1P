@@ -1,14 +1,25 @@
+const int led = 7;
+const int button = 4;
+
+int buttonState = 0;
+
 void setup()
 {
+  Serial.begin(2000);
   pinMode(7, OUTPUT);
-  pinMode(13, OUTPUT);
+  pinMode(4, INPUT);
 }
 
 void loop()
 {
-  digitalWrite(7, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(7, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(7, HIGH);
+  buttonState = digitalRead(button);
+  
+  if (buttonState == HIGH) {
+    digitalWrite(led, HIGH);
+    Serial.println("LED ON");
+  }
+  else {
+    digitalWrite(led, LOW);
+    Serial.println("LED OFF");
+  }
 }
